@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <title>ER0R C2 - ADVANCED PANEL</title>
+    <title>ER0R C2 - COMMAND CENTER</title>
     <style>
-        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
-        .panel { border: 3px solid #6001d2; padding: 20px; background: #050505; border-radius: 15px; display: inline-block; width: 80%; }
-        .btn { background: #1a1a1a; color: #6001d2; border: 1px solid #6001d2; padding: 12px; margin: 8px; cursor: pointer; width: 200px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #6001d2; color: #fff; box-shadow: 0 0 15px #6001d2; }
+        body { background: #000; color: #0f0; font-family: monospace; text-align: center; padding: 20px; }
+        .control-panel { border: 2px solid #6001d2; padding: 20px; border-radius: 15px; background: #050505; display: inline-block; }
+        .btn { background: #111; color: #6001d2; border: 1px solid #6001d2; padding: 12px 25px; margin: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #6001d2; color: #fff; box-shadow: 0 0 20px #6001d2; }
         .danger { border-color: #f00; color: #f00; }
-        .danger:hover { background: #f00; color: #000; box-shadow: 0 0 15px #f00; }
+        .danger:hover { background: #f00; }
     </style>
 </head>
 <body>
-    <h1>📟 مركز التحكم المطور - ER0R TEAM</h1>
-    <div class="panel">
-        <h3>الهدف: <span style="color:white">متصل (Online)</span></h3>
-        
+    <h1>📟 نظام السيطرة ER0R - حالة الهدف: متصل</h1>
+    <div class="control-panel">
         <button class="btn" onclick="alert('جاري سحب الصور...')">📂 سحب الصور</button>
-        <button class="btn" onclick="alert('جاري سحب الكوكيز والباسوردات...')">🔑 سحب الكوكيز</button>
-        <button class="btn" onclick="alert('جاري فتح الكاميرا صمتاً...')">📸 فتح الكاميرا</button>
+        <button class="btn" onclick="alert('جاري سحب كلمات مرور المواقع...')">🌐 سحب الباسوردات</button>
+        <button class="btn" onclick="alert('جاري فتح الكاميرا...')">📸 فتح الكاميرا</button>
         <br>
-        <button class="btn danger" onclick="alert('جاري تجميد جهاز الضحية (Freeze)...')">❄️ تجميد الجهاز</button>
-        <button class="btn danger" onclick="confirm('تدمير النظام بالكامل؟') ? alert('جاري تنفيذ الفرمتة...') : null">☢️ فرمتة شاملة</button>
-        <button class="btn danger" onclick="alert('جاري إرسال شاشة الموت الزرقاء (BSOD)...')">🖥️ شاشة الموت</button>
+        <button class="btn danger" onclick="alert('جاري قفل شاشة الجهاز...')">🔒 قفل الجهاز</button>
+        <button class="btn danger" onclick="confirm('تأكيد الفرمتة؟') ? alert('جاري مسح النظام...') : null">☢️ فرمتة شاملة</button>
     </div>
 </body>
 </html>
