@@ -1,25 +1,33 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <title>ER0R C2 - COMMAND CENTER</title>
-    <style>
-        body { background: #000; color: #0f0; font-family: monospace; text-align: center; padding: 20px; }
-        .control-panel { border: 2px solid #6001d2; padding: 20px; border-radius: 15px; background: #050505; display: inline-block; }
-        .btn { background: #111; color: #6001d2; border: 1px solid #6001d2; padding: 12px 25px; margin: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #6001d2; color: #fff; box-shadow: 0 0 20px #6001d2; }
-        .danger { border-color: #f00; color: #f00; }
-        .danger:hover { background: #f00; }
-    </style>
-</head>
-<body>
-    <h1>📟 نظام السيطرة ER0R - حالة الهدف: متصل</h1>
-    <div class="control-panel">
-        <button class="btn" onclick="alert('جاري سحب الصور...')">📂 سحب الصور</button>
-        <button class="btn" onclick="alert('جاري سحب كلمات مرور المواقع...')">🌐 سحب الباسوردات</button>
-        <button class="btn" onclick="alert('جاري فتح الكاميرا...')">📸 فتح الكاميرا</button>
-        <br>
-        <button class="btn danger" onclick="alert('جاري قفل شاشة الجهاز...')">🔒 قفل الجهاز</button>
-        <button class="btn danger" onclick="confirm('تأكيد الفرمتة؟') ? alert('جاري مسح النظام...') : null">☢️ فرمتة شاملة</button>
-    </div>
-</body>
-</html>
+<div class="panel">
+    <h3 style="color: red;">📍 الضحية: <span id="target-ip">76.212.2</span></h3>
+    <h3 style="color: #0f0;">الحالة: متصل (صلاحية آدمن)</h3>
+    
+    <button class="btn" onclick="sendCommand('📷 سحب الصور')">سحب الصور 📂</button>
+    
+    <button class="btn" onclick="sendCommand('📸 تصوير الشاشة')">تصوير الشاشة 📷</button>
+</div>
+
+<script>
+async function sendCommand(action) {
+    try {
+        const configRes = await fetch('./data.json');
+        const config = await configRes.json();
+
+        await fetch(config.webhook_url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: "ER0R COMMANDER",
+                embeds: [{
+                    title: "🚀 أمر سيطرة جديد",
+                    description: `تم إرسال أمر: **${action}** للضحية ذات الـ IP: **76.212.2**`,
+                    color: 0x6001d2
+                }]
+            })
+        });
+        alert("تم إرسال الأمر بنجاح: " + action);
+    } catch(e) {
+        alert("خطأ في الاتصال بالويب هوك");
+    }
+}
+</script>
