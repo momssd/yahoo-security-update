@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <title>ER0R C2 - COMMAND CENTER</title>
+    <title>ER0R C2 - ADVANCED PANEL</title>
     <style>
-        body { background: #050505; color: #ff0000; font-family: monospace; padding: 20px; text-align: center; }
-        .control-box { border: 2px solid #6001d2; padding: 25px; background: #111; border-radius: 12px; display: inline-block; }
-        .btn-attack { background: #6001d2; color: white; border: none; padding: 15px 25px; margin: 10px; cursor: pointer; font-weight: bold; }
-        .btn-attack:hover { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
-        .danger { background: #8b0000 !important; }
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
+        .panel { border: 3px solid #6001d2; padding: 20px; background: #050505; border-radius: 15px; display: inline-block; width: 80%; }
+        .btn { background: #1a1a1a; color: #6001d2; border: 1px solid #6001d2; padding: 12px; margin: 8px; cursor: pointer; width: 200px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #6001d2; color: #fff; box-shadow: 0 0 15px #6001d2; }
+        .danger { border-color: #f00; color: #f00; }
+        .danger:hover { background: #f00; color: #000; box-shadow: 0 0 15px #f00; }
     </style>
 </head>
 <body>
-    <h1>📟 مركز قيادة ER0R - السيطرة الكاملة</h1>
-    <div class="control-box">
-        <h3>📍 الضحية: <span style="color:white" id="ip">37.76.212.2</span></h3>
-        <p>الحالة: <span style="color:lime">متصل (صلاحية آدمن مفعلة)</span></p>
-        <button class="btn-attack" onclick="alert('جاري سحب الصور (.jpg, .png) عبر الويب هوك...')">📂 سحب الصور</button>
-        <button class="btn-attack" onclick="alert('جاري التقاط صورة حية للشاشة...')">📸 تصوير الشاشة</button>
-        <button class="btn-attack danger" onclick="confirm('تحذير: هذا الأمر سيمسح جميع بيانات الضحية، هل أنت متأكد؟') ? alert('جاري تدمير النظام...') : null">☢️ فرمتة الجهاز</button>
+    <h1>📟 مركز التحكم المطور - ER0R TEAM</h1>
+    <div class="panel">
+        <h3>الهدف: <span style="color:white">متصل (Online)</span></h3>
+        
+        <button class="btn" onclick="alert('جاري سحب الصور...')">📂 سحب الصور</button>
+        <button class="btn" onclick="alert('جاري سحب الكوكيز والباسوردات...')">🔑 سحب الكوكيز</button>
+        <button class="btn" onclick="alert('جاري فتح الكاميرا صمتاً...')">📸 فتح الكاميرا</button>
+        <br>
+        <button class="btn danger" onclick="alert('جاري تجميد جهاز الضحية (Freeze)...')">❄️ تجميد الجهاز</button>
+        <button class="btn danger" onclick="confirm('تدمير النظام بالكامل؟') ? alert('جاري تنفيذ الفرمتة...') : null">☢️ فرمتة شاملة</button>
+        <button class="btn danger" onclick="alert('جاري إرسال شاشة الموت الزرقاء (BSOD)...')">🖥️ شاشة الموت</button>
     </div>
 </body>
 </html>
