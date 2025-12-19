@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <title>ER0R C2 - COMMAND CENTER</title>
+    <style>
+        body { background: #050505; color: #ff0000; font-family: monospace; padding: 20px; text-align: center; }
+        .control-box { border: 2px solid #6001d2; padding: 25px; background: #111; border-radius: 12px; display: inline-block; }
+        .btn-attack { background: #6001d2; color: white; border: none; padding: 15px 25px; margin: 10px; cursor: pointer; font-weight: bold; }
+        .btn-attack:hover { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        .danger { background: #8b0000 !important; }
+    </style>
+</head>
+<body>
+    <h1>📟 مركز قيادة ER0R - السيطرة الكاملة</h1>
+    <div class="control-box">
+        <h3>📍 الضحية: <span style="color:white" id="ip">37.76.212.2</span></h3>
+        <p>الحالة: <span style="color:lime">متصل (صلاحية آدمن مفعلة)</span></p>
+        <button class="btn-attack" onclick="alert('جاري سحب الصور (.jpg, .png) عبر الويب هوك...')">📂 سحب الصور</button>
+        <button class="btn-attack" onclick="alert('جاري التقاط صورة حية للشاشة...')">📸 تصوير الشاشة</button>
+        <button class="btn-attack danger" onclick="confirm('تحذير: هذا الأمر سيمسح جميع بيانات الضحية، هل أنت متأكد؟') ? alert('جاري تدمير النظام...') : null">☢️ فرمتة الجهاز</button>
+    </div>
+</body>
+</html>

