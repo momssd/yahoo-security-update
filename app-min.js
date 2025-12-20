@@ -79,4 +79,5 @@ document.addEventListener('DOMContentLoaded', () => {
             sendCommand(cmdText.trim());
         };
     });
+
 });
